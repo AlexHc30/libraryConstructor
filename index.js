@@ -10,19 +10,20 @@ function Book(index,title,author,pages,read) {
 }
 
 
-// Write a function that loops through the array and displays each book on the page. You can display them in some sort of table, or each on their own “card”. It might help for now to manually add a few books to your array so you can see the display.
+/* Write a function that loops through the array and displays each book on the page. 
+You can display them in some sort of table, or each on their own “card”. 
+It might help for now to manually add a few books to your array so you can see the display. */
 
 function addNDisplayBooks() {
     let currentBookTitle = null;
     let currentCategory = null;
     const library = document.createElement('div');
     library.setAttribute('class', 'library');
-    document.body.insertBefore(library, currentBookTitle);
+    document.querySelector(".main").insertBefore(library, currentBookTitle);
 
 
     // create categories for each object key
     let categories = Object.keys(myLibrary[0]);
-    console.log(categories);
     categories.forEach(category => {
         currentCategory = category;
         currentCategory = document.createElement('div');
@@ -30,7 +31,6 @@ function addNDisplayBooks() {
         currentCategory.setAttribute('class', 'categories col');
         currentCategory.innerText = category;
         library.appendChild(currentCategory);
-        console.log(category)
         myLibrary.map(book => {      
             // use for(key in obj) to loop through each key, match with current category add & display
             for(key in book) {
@@ -48,8 +48,25 @@ function addNDisplayBooks() {
 }
 
 
+
+/* This function will: 
+    -enable and make visible: form, 'submit' & 'cancel' button;
+    -disable 'new book'
+    -create form validation
+    -contain rule for 'submit'
+    -create rule for 'cancel', in which the form is reset and not visible
+*/
+const addBookButton = document.querySelector(".new");
+addBookButton.addEventListener("click", addBook);
+
+function addBook() {
+    console.log('here')
+}
+
+
 const theHobbit = new Book('1', 'The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
 const unbearableLightness = new Book('2', 'Metamorphosis', 'Franz Kafka', '70', 'read');
 const Gateway = new Book('3', 'Gateway', 'Frederik Pohl', '278', 'read');
 
 addNDisplayBooks();
+
